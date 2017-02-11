@@ -1,5 +1,6 @@
-@import "lib/_bootswatch_variables";
+@import "font-awesome/font-awesome";
 
+@import "lib/_bootswatch_variables";
 @import "lib/_bootstrap";
 @import "lib/_bootswatch";
 @import "lib/flipclock";
@@ -77,5 +78,39 @@ img.ultrasound {
     input[type=text] {
       width: 300px;
     }
+  }
+}
+
+#calvin {
+  form {
+    width: 80px;
+    margin: auto;
+
+    div.form-group {
+      text-align: left;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.carousel {
+  width: 720px;
+  margin: auto;
+
+  .carousel-inner {
+    .item {
+      img {
+        width: 720px;
+        height: 480px;
+      }
+
+      .carousel-caption {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .carousel-control span.fa {
+    margin-top: 230px;
   }
 }
