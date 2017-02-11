@@ -54,6 +54,10 @@ img.ultrasound {
 }
 
 #baby-shower {
+  .gmaps-overlay iframe {
+    pointer-events: none;
+  }
+
   iframe {
     width: 700px;
     height: 300px;
