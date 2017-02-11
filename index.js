@@ -6,7 +6,7 @@ const sass = require('node-sass-middleware');
 const path = require('path');
 
 const app = express();
-const server = app.listen(80, '0.0.0.0');
+const server = app.listen(30000, '0.0.0.0');
 
 app.disable('x-powered-by');
 //app.use(favicon(__dirname + 'site/images/favicon.ico'));
