@@ -4,8 +4,13 @@
   "description": "porrasho.com website",
   "main": "index.js",
   "dependencies": {
+    "compression": "^1.6.2",
     "express": "^4.14.1",
-    "mongoose": "^4.8.2"
+    "mongoose": "^4.8.2",
+    "morgan": "^1.8.1",
+    "node-sass-middleware": "^0.11.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.3.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,10 +20,8 @@
     "type": "git",
     "url": "git+https://github.com/michaeljho/porrasho.git"
   },
-  "keywords": [
-    "a"
-  ],
-  "author": "Michael Ho",
+  "keywords": [],
+  "author": "Michael Ho (michael.j.ho@gmail.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/michaeljho/porrasho/issues"
