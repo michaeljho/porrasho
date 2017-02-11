@@ -1,0 +1,27 @@
+{
+  "name": "porrasho",
+  "version": "1.0.0",
+  "description": "porrasho.com website",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaeljho/porrasho.git"
+  },
+  "keywords": [
+    "a"
+  ],
+  "author": "Michael Ho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaeljho/porrasho/issues"
+  },
+  "homepage": "https://github.com/michaeljho/porrasho#readme"
+}
