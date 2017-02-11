@@ -17,6 +17,10 @@ body {
   }
 }
 
+input:focus {
+  outline: none;
+}
+
 .content {
   padding: 10px;
   font-size: 18px;
@@ -50,5 +54,24 @@ img.ultrasound {
 }
 
 #baby-shower {
+  iframe {
+    width: 700px;
+    height: 300px;
+    margin-bottom: 30px;
+  }
 
+  form {
+    text-align: left;
+    margin: auto;
+
+    label {
+      text-align: right;
+      min-width: 150px;
+      padding-right: 5px;
+    }
+
+    input[type=text] {
+      width: 300px;
+    }
+  }
 }
