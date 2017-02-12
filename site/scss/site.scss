@@ -35,6 +35,10 @@ input:focus {
   font-size: 18px;
 }
 
+.content-sm {
+  font-size: 14px;
+}
+
 .content-large {
   font-size: 24px;
 }
@@ -107,6 +111,13 @@ img.ultrasound {
   }
 }
 
+#registries {
+  .checklist-column {
+    border: 1px solid #9f9f9f;
+    padding-bottom:10px;
+  }
+}
+
 .carousel {
   width: 720px;
   margin: auto;
@@ -127,4 +138,8 @@ img.ultrasound {
   .carousel-control span.fa {
     margin-top: 230px;
   }
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
