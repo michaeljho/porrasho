@@ -1,4 +1,4 @@
-$('#clock').FlipClock(Math.round((new Date('2017-06-26 01:00:00').getTime() - new Date().getTime()) / 1000), {
+$('#clock').FlipClock(Math.round((new Date('2017-06-26T01:00:00').getTime() - new Date().getTime()) / 1000), {
     clockFace: 'DailyCounter',
     countdown: true
 });
