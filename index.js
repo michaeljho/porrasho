@@ -31,7 +31,7 @@ const app = express();
 const server = app.listen(80, '0.0.0.0');
 
 app.disable('x-powered-by');
-//app.use(favicon(__dirname + 'site/images/favicon.ico'));
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use(compression());
 
 app.use(bodyParser.urlencoded({
