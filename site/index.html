@@ -26,7 +26,7 @@
                         </ul>
                     </li>
                     <li><a class="page-scroll" href="#baby-shower">baby shower</a></li>
-                    <li><a class="page-scroll" href="#registries">registries</a></li>
+                    <li><a class="page-scroll" href="#registries">checklist | registry</a></li>
                 </ul>
             </div>
         </div>
@@ -65,10 +65,17 @@
                     <div class="content-large">baby ho</div>
                     <div style="width:500px;margin:auto;padding-bottom:10px;margin-bottom:15px;border:1px solid #9f9f9f;">
                         <div class="content">it's a boy! help us decide on a name:</div>
-                        <form>
-                            <div class="form-group"><input type="checkbox" name="name" value="calvin"><label>calvin james</label></div>
-                            <div class="form-group"><input type="checkbox" name="name" value="ezra"><label>ezra pierce</label></div>
-                            <div class="form-group" style="width:300px;"><label style="margin-right:10px;">suggest a name:</label><input type="text" name="other_name" /></div>
+                        <div class="content-sm error-box"></div>
+                        <form id="baby-names">
+                            <div class="form-group"><input type="radio" name="name" value="calvin"><label>calvin james</label></div>
+                            <div class="form-group"><input type="radio" name="name" value="ezra"><label>ezra pierce</label></div>
+                            <div class="form-group" style="width:320px;">
+                                <input type="radio" name="name" value="other">
+                                <label style="margin-right:10px;">suggest a name:</label>
+                                <input type="text" name="other_name">
+                            </div>
+                            <button id="names-submit" class="btn" style="margin-top:10px;">submit</button>
+                            <div class="success-text content-sm"></div>
                         </form>
                     </div>
                     <div id="calvin-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -169,18 +176,20 @@
                     </div>
                     <div style="width:500px;margin:auto;border:1px solid #9f9f9f;">
                         <div class="content">RSVP</div>
-                        <form>
-                            <div class="form-group">
+                        <div class="content-sm error-box"></div>
+                        <form id="shower-rsvp">
+                            <div class="form-group rsvp-name">
                                 <label>your name:</label>
                                 <input type="text" name="name" placeholder="john doe"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group rsvp-email">
                                 <label>your email address:</label>
                                 <input type="text" name="email" placeholder="john@doe.com"/>
                             </div>
                             <div class="form-group">
                                 <label>number of guests:</label>
                                 <input type="number" min="1" max="10" value="1" name="guest_count"/>
+                                <button id="rsvp-submit" class="btn" style="float:right;margin-right:20px;">submit</button>
                             </div>
                         </form>
                     </div>
@@ -190,14 +199,12 @@
     </section>
 
     <section id="registries">
-        <div class="content-xl">where we're registered</div>
-        <div class="content">amazon</div>
-        <div class="content">buy buy baby</div>
-        <div class="content">pottery barn kids</div>
-        <div class="content">etsy</div>
-        <div class="container" style="margin-top:30px;padding:15px;">
+        <div class="container">
             <div class="content-xl">our baby checklist</div>
-            <div class="content" style="padding-top:0px;">we already have lots of clothes for zero to six months!</div>
+            <div class="content" style="padding-top:0px;margin-bottom:15px;">
+                visit our registry* at <a href="https://www.babylist.com/priscilla-porras" target="_blank" style="font-weight:600;">babylist.com</a>
+                <div class="content-sm">ship to us @ 6892 deer isle street, las vegas, nv, 89149</div>
+            </div>
             <div class="row">
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
@@ -219,29 +226,57 @@
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
                         <div class="content-large">feeding</div>
+                        <div class="content-sm">bottles</div>
+                        <div class="content-sm">bottle brusher</div>
+                        <div class="content-sm">dishwasher basket</div>
+                        <div class="content-sm">nursing scarf</div>
+                        <div class="content-sm">nursing pillow</div>
+                        <div class="content-sm">nursing pads</div>
+                        <div class="content-sm">breast pump</div>
+                        <div class="content-sm">high chair</div>
+                        <div class="content-sm">bibs</div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
                         <div class="content-large">diapering</div>
+                        <div class="content-sm strikethrough">diaper bag</div>
+                        <div class="content-sm">pampers diapers</div>
+                        <div class="content-sm">huggies wipes</div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
                         <div class="content-large">bath</div>
+                        <div class="content-sm">infant tub</div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
                         <div class="content-large">gear</div>
+                        <div class="content-sm">car seat</div>
+                        <div class="content-sm strikethrough">car window shades</div>
+                        <div class="content-sm">infant carrier</div>
+                        <div class="content-sm strikethrough">stroller</div>
+                        <div class="content-sm">rocker | bouncer</div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="col-lg-12 checklist-column">
                         <div class="content-large">toys</div>
+                        <div class="content-sm">activity/tummy mat</div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 checklist-column" style="margin-top:15px;padding:10px;">
+                    <div class="content" style="padding-top:0px;">
+                        we already have lots of clothes for zero to six months...
+                        <div class="content-sm">... but any cute outfits, mittens, or booties you come across are welcome!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="content" style="color:#33a0d2;">* please don't feel obligated to buy anything, we appreciate everyone's love and support!</div>
         </div>
     </section>
 

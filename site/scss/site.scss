@@ -26,13 +26,23 @@ body {
   }
 }
 
-input:focus {
+input:focus,
+button:focus {
   outline: none;
 }
 
 .content {
   padding: 10px;
   font-size: 18px;
+
+  a {
+    color: $ph-base-font-color;
+    text-decoration: underline;
+
+    &:hover {
+      color: lighten($ph-base-font-color, 20%);
+    }
+  }
 }
 
 .content-sm {
@@ -45,6 +55,10 @@ input:focus {
 
 .content-xl {
   font-size: 30px;
+}
+
+.error-box {
+  color: red;
 }
 
 img.ultrasound {

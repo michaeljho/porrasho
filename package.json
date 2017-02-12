@@ -4,6 +4,7 @@
   "description": "porrasho.com website",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "compression": "^1.6.2",
     "express": "^4.14.1",
     "mongoose": "^4.8.2",
