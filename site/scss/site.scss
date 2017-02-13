@@ -147,14 +147,22 @@ img.ultrasound {
   margin: auto;
 
   .carousel-inner {
+    background-color: $ph-base-font-color;
+
     .item {
       img {
         width: 720px;
         height: 480px;
+
+        &.tall {
+          width: auto;
+          height: 480px;
+          margin: auto;
+        }
       }
 
       .carousel-caption {
-        font-size: 18px;
+        font-size: 20px;
       }
     }
   }
