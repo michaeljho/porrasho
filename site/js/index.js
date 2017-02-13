@@ -32,12 +32,12 @@ $('#rsvp-submit').click((e) => {
     const data = getFormData(form);
     let error = false;
 
-    if (!data.name.trim().length) {
-        error = 'please enter a valid name';
+    if (!data.email.trim().length || data.email.indexOf('@') === -1) {
+        error = 'please enter a valid email address';
     }
 
-    if (!data.email.trim().length) {
-        error = 'please enter a valid email address';
+    if (!data.name.trim().length) {
+        error = 'please enter a valid name';
     }
 
     if (error) {
