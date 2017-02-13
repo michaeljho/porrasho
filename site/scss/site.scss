@@ -19,6 +19,16 @@ body {
     padding: 0px;
   }
 
+  .navbar-default .navbar-nav > .active > a {
+    color: #000 !important;
+    background-color: transparent !important;
+    font-size: 15px;
+  }
+
+  .navbar-default .navbar-nav > .open > a {
+    background-color: transparent !important;
+  }
+
   section {
     text-align: center;
     padding-top: 75px;
