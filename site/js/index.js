@@ -64,7 +64,7 @@ $('#names-submit').click((e) => {
     let error = false;
     success.html('');
 
-    if (!data.name) {
+    if (!data.name || (data.name === 'other' && !data.other_name.trim().length)) {
         error = 'please pick a name';
     }
 
@@ -79,6 +79,8 @@ $('#names-submit').click((e) => {
         method: 'POST',
         data: data,
         success: () => {
+            $('input[name="name"][value="calvin"]').prop('checked', true).prop('checked', false);
+            $('input[name="other_name"]').val('');
             success.html('got it! feel free to submit another!');
         }
     });
