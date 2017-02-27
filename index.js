@@ -132,6 +132,12 @@ function getPlainTextAlexaResponse(text, endSession) {
                 type: 'PlainText',
                 text: text
             },
+            reprompt: {
+                outputSpeech: {
+                    type: 'PlainText',
+                    text: `I didn't get that. Please try again.`
+                }
+            },
             shouldEndSession: endSession
         }
     }
