@@ -148,7 +148,7 @@ app.post('/alexa', (req, res) => {
     if (session.new) {
         const { type, intent } = request;
         const { name: intentName, slots } = intent;
-        if (type === 'LaunchRequest') {
+        if (type === 'LaunchRequest' || (type === 'IntentRequest' && intentName === 'HelloWorld')) {
             res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?', true));
         } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
             res.send(getPlainTextAlexaResponse(`hello ${slots.Name.value}! i am excited to learn more about you. can you please tell me when you were born?`, false));
@@ -165,9 +165,9 @@ app.post('/alexa', (req, res) => {
             } else if (slots.Height.value) {
                 const height = parseInt(slots.Height.value);
                 if (height >= 54) {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you are tall enough to ride all of the roller coasters at legoland?`, true));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you are tall enough to ride all of the roller coasters at lego land?`, true));
                 } else {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at legoland?`, true));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at lego land?`, true));
                 }
             }
         }
