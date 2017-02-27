@@ -155,7 +155,7 @@ app.post('/alexa', (req, res) => {
         }
     } else {
         const { type, intent } = request;
-        const { name = intentName, slots } = intent;
+        const { intentName = name, slots } = intent;
         if (type === 'IntentRequest' && intentName === 'LearnStudent') {
             if (slots.Birthday.value) {
                 const bday = new Date(slots.Birthday.value).getTime();
