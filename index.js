@@ -147,7 +147,7 @@ app.post('/alexa', (req, res) => {
 
     if (session.new) {
         const { type, intent } = request;
-        const { name = intentName, slots } = intent;
+        const { name: intentName, slots } = intent;
         if (type === 'LaunchRequest') {
             res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?'));
         } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
