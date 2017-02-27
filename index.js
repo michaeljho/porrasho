@@ -124,4 +124,54 @@ app.use('/styles', sass({
     outputStyle: 'expanded'
 }));
 
+function getPlainTextAlexaResponse(text, endSession) {
+    return {
+        version: '1.0',
+        response: {
+            outputSpeech: {
+                type: 'PlainText',
+                text: text
+            },
+            shouldEndSession: endSession
+        }
+    }
+}
+
+app.post('/alexa', (req, res) => {
+    const { request, session } = req.body;
+    console.log('alexa request received', request);
+
+    if (session.application.applicationId !== 'amzn1.ask.skill.f0e1b964-3237-43b7-99cb-737fddfc794e') {
+        res.send(getPlainTextAlexaResponse(`I'm sorry, I don't recognize you.`, true));
+    }
+
+    if (session.new) {
+        const { type, intent } = request;
+        const { name = intentName, slots } = intent;
+        if (type === 'LaunchRequest') {
+            res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?'));
+        } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
+            res.send(getPlainTextAlexaResponse('hello ${slots.Name.value}! i am excited to learn more about you. can you please tell me when you were born?'));
+        }
+    } else {
+        const { type, intent } = request;
+        const { name = intentName, slots } = intent;
+        if (type === 'IntentRequest' && intentName === 'LearnStudent') {
+            if (slots.Birthday.value) {
+                const bday = new Date(slots.Birthday.value).getTime();
+                const now = new Date().getTime();
+                const diff = Math.floor((now - bday) / (1000 * 60 * 60 * 24 * 365));
+                res.send(getPlainTextAlexaResponse(`wow, you are already ${diff} years old! how tall are you now?`));
+            } else if (slots.Height.value) {
+                const height = parseInt(slots.Height.value);
+                if (height >= 54) {
+                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you are tall enough to ride all of the roller coasters at legoland?`));
+                } else {
+                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at legoland?`));
+                }
+            }
+        }
+    }
+});
+
 app.use(express.static('site'));
