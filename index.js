@@ -209,6 +209,38 @@ app.post('/alexa', (req, res) => {
                 }
             });
             res.send(getPlainTextAlexaResponse(`the youngest student is ${youngest}, at ${Math.floor((now - new Date(min).getTime()) / (1000 * 60 * 60 * 24 * 365))} years old.`, true))
+        } else if (type === 'IntentRequest' && intentName === 'LineThemUp') {
+            let sorted = [];
+            if (slots.Type.value === 'age') {
+                Object.keys(studentMap).forEach((key) => {
+                    const student = studentMap[key];
+                    if (!sorted.length) {
+                        sorted.push(student);
+                    } else {
+                        let inserted = false;
+                        for (let x = 0, xlen = sorted.length; x < xlen; x++) {
+                            if (student.age > sorted[x].age) {
+                                sorted.splice(x, 0, student);
+                                inserted = true;
+                                break;
+                            }
+                        }
+                        if (!inserted) sorted.push(student);
+                    }
+                });
+                let names = ``;
+                sorted.forEach((student, index) => {
+                    if (index === 0) {
+                        names += `first is ${student.name}. `;
+                    } else {
+                        names += `next is ${student.name}. `;
+                    }
+                });
+                res.send(getPlainTextAlexaResponse(`ok class. let's get in line. ${names}`, true))
+            } else if (slots.Type.value === 'height') {
+
+            }
+            res.send(getPlainTextAlexaResponse(`the youngest student is ${youngest}, at ${Math.floor((now - new Date(min).getTime()) / (1000 * 60 * 60 * 24 * 365))} years old.`, true))
         }
     } else {
         const { type, intent } = request;
