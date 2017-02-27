@@ -140,6 +140,8 @@ function getPlainTextAlexaResponse(text, endSession) {
 app.post('/alexa', (req, res) => {
     const { request, session } = req.body;
     console.log('alexa request received', request);
+    let studentMap = {};
+    let currName;
 
     if (session.application.applicationId !== 'amzn1.ask.skill.f0e1b964-3237-43b7-99cb-737fddfc794e') {
         res.send(getPlainTextAlexaResponse(`I'm sorry, I don't recognize you.`, true));
@@ -151,25 +153,41 @@ app.post('/alexa', (req, res) => {
         if (type === 'LaunchRequest' || (type === 'IntentRequest' && intentName === 'HelloWorld')) {
             res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?', true));
         } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
-            res.send(getPlainTextAlexaResponse(`hello ${slots.Name.value}! i am excited to learn more about you. can you please tell me when you were born?`, false));
+            currName = slots.Name.value;
+            studentMap[currName] = studentMap[currName] || { name: currName };
+            res.send(getPlainTextAlexaResponse(`hello ${currName}! i am excited to learn more about you. can you please tell me when you were born?`, false));
         }
     } else {
         const { type, intent } = request;
         const { name: intentName, slots } = intent;
         if (type === 'IntentRequest' && intentName === 'LearnStudent') {
             if (slots.Birthday.value) {
+                studentMap[currName].bday = slots.Birthday.value;
                 const bday = new Date(slots.Birthday.value).getTime();
                 const now = new Date().getTime();
                 const diff = Math.floor((now - bday) / (1000 * 60 * 60 * 24 * 365));
-                res.send(getPlainTextAlexaResponse(`wow, you are already ${diff} years old! how tall are you now?`, false));
+                res.send(getPlainTextAlexaResponse(`wow, ${currName}, you are already ${diff} years old! how tall are you now?`, false));
             } else if (slots.Height.value) {
                 const height = parseInt(slots.Height.value);
+                studentMap[currName].height = height;
                 if (height >= 54) {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you are tall enough to ride all of the roller coasters at lego land?`, true));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you are tall enough to ride all of the roller coasters at sea world?`, true));
                 } else {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at lego land?`, true));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at sea world?`, true));
                 }
             }
+        } else if (type === 'IntentRequest' && intentName === 'WhoIsTallest') {
+            let tallest = null;
+            let max = 0;
+            Object.entries(studentMap).forEach((student) => {
+                if (student.height > max) {
+                    max = student.height;
+                    tallest = student.name;
+                }
+            });
+            res.send(getPlainTextAlexaResponse(`the tallest student is ${tallest}, at ${max} inches tall.`, true))
+        } else if (type === 'SessionEndedRequest') {
+            res.send({ version: '1.0' });
         }
     }
 });
