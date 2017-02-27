@@ -162,7 +162,7 @@ app.post('/alexa', (req, res) => {
         } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
             currName = slots.Name.value;
             studentMap[currName] = studentMap[currName] || { name: currName };
-            res.send(getPlainTextAlexaResponse(`hello ${currName}! i am excited to learn more about you. can you please tell me when you were born?`, false));
+            res.send(getPlainTextAlexaResponse(`hello, ${currName}! i am excited to learn more about you. can you please tell me when you were born?`, false));
         } else if (type === 'IntentRequest' && intentName === 'WhoIsTallest') {
             let tallest = null;
             let max = 0;
@@ -179,7 +179,7 @@ app.post('/alexa', (req, res) => {
             let min = 1000;
             Object.keys(studentMap).forEach((key) => {
                 const student = studentMap[key];
-                if (student.height < max) {
+                if (student.height < min) {
                     min = student.height;
                     shortest = student.name;
                 }
