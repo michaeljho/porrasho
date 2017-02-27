@@ -187,16 +187,28 @@ app.post('/alexa', (req, res) => {
             res.send(getPlainTextAlexaResponse(`the shortest student is ${shortest}, at ${min} inches tall.`, true))
         } else if (type === 'IntentRequest' && intentName === 'WhoIsOldest') {
             let oldest = null;
-            let max = '0000-00-00';
+            let max = '9999-99-99';
             const now = new Date().getTime();
             Object.keys(studentMap).forEach((key) => {
                 const student = studentMap[key];
-                if (student.bday > max) {
+                if (student.bday < max) {
                     max = student.bday;
                     oldest = student.name;
                 }
             });
             res.send(getPlainTextAlexaResponse(`the oldest student is ${oldest}, at ${Math.floor((now - new Date(max).getTime()) / (1000 * 60 * 60 * 24 * 365))} years old.`, true))
+        } else if (type === 'IntentRequest' && intentName === 'WhoIsYoungest') {
+            let youngest = null;
+            let min = '0000-00-00';
+            const now = new Date().getTime();
+            Object.keys(studentMap).forEach((key) => {
+                const student = studentMap[key];
+                if (student.bday > min) {
+                    min = student.bday;
+                    youngest = student.name;
+                }
+            });
+            res.send(getPlainTextAlexaResponse(`the youngest student is ${youngest}, at ${Math.floor((now - new Date(min).getTime()) / (1000 * 60 * 60 * 24 * 365))} years old.`, true))
         }
     } else {
         const { type, intent } = request;
