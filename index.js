@@ -240,7 +240,6 @@ app.post('/alexa', (req, res) => {
             } else if (slots.Type.value === 'height') {
 
             }
-            res.send(getPlainTextAlexaResponse(`the youngest student is ${youngest}, at ${Math.floor((now - new Date(min).getTime()) / (1000 * 60 * 60 * 24 * 365))} years old.`, true))
         }
     } else {
         const { type, intent } = request;
