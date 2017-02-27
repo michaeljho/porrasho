@@ -137,11 +137,12 @@ function getPlainTextAlexaResponse(text, endSession) {
     }
 }
 
+let studentMap = {};
+let currName;
+
 app.post('/alexa', (req, res) => {
     const { request, session } = req.body;
     console.log('alexa request received', request);
-    let studentMap = {};
-    let currName;
 
     if (session.application.applicationId !== 'amzn1.ask.skill.f0e1b964-3237-43b7-99cb-737fddfc794e') {
         res.send(getPlainTextAlexaResponse(`I'm sorry, I don't recognize you.`, true));
