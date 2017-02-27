@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const config = require('config');
 mongoose.connect('mongodb://localhost:27017/porrasho');
 
 const db = mongoose.connection;
@@ -32,7 +33,7 @@ const gmail = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'mike.cilla.ho@gmail.com',
-        pass: '3H213BWV029EE'
+        pass: config.get('gmailPassword')
     }
 });
 
