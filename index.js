@@ -181,6 +181,7 @@ app.post('/alexa', (req, res) => {
             let tallest = null;
             let max = 0;
             Object.values(studentMap).forEach((student) => {
+                console.log('who is tallest', student);
                 if (student.height > max) {
                     max = student.height;
                     tallest = student.name;
