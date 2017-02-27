@@ -149,9 +149,9 @@ app.post('/alexa', (req, res) => {
         const { type, intent } = request;
         const { name: intentName, slots } = intent;
         if (type === 'LaunchRequest') {
-            res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?'));
+            res.send(getPlainTextAlexaResponse('hello innovation academy! my name is alexa. are you ready to have some fun today?', true));
         } else if (type === 'IntentRequest' && intentName === 'LearnStudent' && slots.Name.value) {
-            res.send(getPlainTextAlexaResponse('hello ${slots.Name.value}! i am excited to learn more about you. can you please tell me when you were born?'));
+            res.send(getPlainTextAlexaResponse(`hello ${slots.Name.value}! i am excited to learn more about you. can you please tell me when you were born?`, false));
         }
     } else {
         const { type, intent } = request;
@@ -161,13 +161,13 @@ app.post('/alexa', (req, res) => {
                 const bday = new Date(slots.Birthday.value).getTime();
                 const now = new Date().getTime();
                 const diff = Math.floor((now - bday) / (1000 * 60 * 60 * 24 * 365));
-                res.send(getPlainTextAlexaResponse(`wow, you are already ${diff} years old! how tall are you now?`));
+                res.send(getPlainTextAlexaResponse(`wow, you are already ${diff} years old! how tall are you now?`, false));
             } else if (slots.Height.value) {
                 const height = parseInt(slots.Height.value);
                 if (height >= 54) {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you are tall enough to ride all of the roller coasters at legoland?`));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you are tall enough to ride all of the roller coasters at legoland?`, true));
                 } else {
-                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at legoland?`));
+                    res.send(getPlainTextAlexaResponse(`you sure are getting tall. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at legoland?`, true));
                 }
             }
         }
