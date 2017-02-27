@@ -180,7 +180,7 @@ app.post('/alexa', (req, res) => {
         } else if (type === 'IntentRequest' && intentName === 'WhoIsTallest') {
             let tallest = null;
             let max = 0;
-            Object.entries(studentMap).forEach((student) => {
+            Object.values(studentMap).forEach((student) => {
                 if (student.height > max) {
                     max = student.height;
                     tallest = student.name;
