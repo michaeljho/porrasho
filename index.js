@@ -163,6 +163,17 @@ app.post('/alexa', (req, res) => {
             currName = slots.Name.value;
             studentMap[currName] = studentMap[currName] || { name: currName };
             res.send(getPlainTextAlexaResponse(`hello ${currName}! i am excited to learn more about you. can you please tell me when you were born?`, false));
+        } else if (type === 'IntentRequest' && intentName === 'WhoIsTallest') {
+            let tallest = null;
+            let max = 0;
+            Object.values(studentMap).forEach((student) => {
+                console.log('who is tallest', student);
+                if (student.height > max) {
+                    max = student.height;
+                    tallest = student.name;
+                }
+            });
+            res.send(getPlainTextAlexaResponse(`the tallest student is ${tallest}, at ${max} inches tall.`, true))
         }
     } else {
         const { type, intent } = request;
@@ -183,17 +194,6 @@ app.post('/alexa', (req, res) => {
                     res.send(getPlainTextAlexaResponse(`you sure are getting big. did you know that you only have ${54 - height} more inches until you can ride all of the roller coasters at sea world?`, true));
                 }
             }
-        } else if (type === 'IntentRequest' && intentName === 'WhoIsTallest') {
-            let tallest = null;
-            let max = 0;
-            Object.values(studentMap).forEach((student) => {
-                console.log('who is tallest', student);
-                if (student.height > max) {
-                    max = student.height;
-                    tallest = student.name;
-                }
-            });
-            res.send(getPlainTextAlexaResponse(`the tallest student is ${tallest}, at ${max} inches tall.`, true))
         } else if (type === 'SessionEndedRequest') {
             res.send({ version: '1.0' });
         }
